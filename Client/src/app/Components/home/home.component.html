@@ -1,0 +1,28 @@
+<div class="dashboard">
+  <button (click)="logout()" class="logout-button">Logout</button>
+
+  <h1>Report</h1>
+
+  <div class="stats-container">
+    <div class="stat-card">
+      <h2>Warehouses</h2>
+      <p>{{ warehouseCount }}</p>
+    </div>
+    <div class="stat-card">
+      <h2>Total Users</h2>
+      <p>{{ UserCount }}</p>
+    </div>
+    <div class="stat-card">
+      <h2>Items in Stock</h2>
+      <p>{{ ItemsCount }}</p>
+    </div>
+  </div>
+  
+
+  <div class="quick-links">
+    <ul>
+      <li><button class="link-button" (click)="goWarehousPage()">Manage Warehouses</button></li>
+      <li><button class="link-button" (click)="goUsersPage()">Manage Users</button></li>
+    </ul>
+  </div>
+</div>

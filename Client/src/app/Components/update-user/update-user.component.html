@@ -1,0 +1,58 @@
+<div class="container">
+  <h2 class="text-center mb-4">Update User Information for id : {{userId}}</h2>
+
+  <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Email Field -->
+    <div class="mb-3 position-relative">
+      <label for="email" class="form-label">Email</label>
+      <input 
+        id="email" 
+        type="email" 
+        class="form-control" 
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': updateUserForm.get('email')?.invalid && updateUserForm.get('email')?.touched }">
+      <div *ngIf="updateUserForm.get('email')?.invalid && updateUserForm.get('email')?.touched" class="text-danger">
+        A valid email is required.
+      </div>
+    </div>
+
+    <!-- Full Name Field -->
+    <div class="mb-3 position-relative">
+      <label for="fullName" class="form-label">Full Name</label>
+      <input 
+        id="fullName" 
+        type="text" 
+        class="form-control" 
+        formControlName="fullName"
+        [ngClass]="{ 'is-invalid': updateUserForm.get('fullName')?.invalid && updateUserForm.get('fullName')?.touched }">
+      <div *ngIf="updateUserForm.get('fullName')?.invalid && updateUserForm.get('fullName')?.touched" class="text-danger">
+        Full name is required.
+      </div>
+    </div>
+
+    <!-- Role Field -->
+    <div class="mb-3 position-relative">
+      <label for="role" class="form-label">Role</label>
+      <select id="role" class="form-control" formControlName="roleId">
+        <option value="" disabled>Select a role</option> 
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+      <div *ngIf="updateUserForm.get('roleId')?.invalid && updateUserForm.get('roleId')?.touched" class="text-danger">
+        A role must be selected.
+      </div>
+    </div>
+    
+
+  
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="isActive" formControlName="isActive">
+      <label class="form-check-label" for="isActive">Is Active</label>
+    </div>
+
+    
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="updateUserForm.invalid">Update User</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,41 @@
+<div class="outer">
+  <div class="container">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3>Login</h3>
+      
+      </div>
+      <div class="panel-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="form-group my-3">
+            <div class="input-field"
+              [class.error]="loginForm.controls['email'].dirty && loginForm.hasError('required', 'email')">
+              <span class="fa fa-user p-2"></span>
+              <input formControlName="email" type="text" placeholder="Email" required>
+            </div>
+            <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required', 'email')" class="text-danger">
+              Email is required
+            </small>
+          </div>
+
+          <div class="form-group">
+            <div class="input-field"
+              [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
+              <span class="fa fa-lock p-2"></span>
+              <input formControlName="password" [type]="type" placeholder="Password" required>
+              <span (click)="hideShowPass()" class="fa {{eyeIcon}}" aria-label="Toggle password visibility"></span>
+            </div>
+            <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" class="text-danger">
+              Password is required
+            </small>
+          </div>
+
+          <button type="submit" class="btn w-100" [disabled]="isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{ isLoading ? 'Logging in...' : 'Login' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

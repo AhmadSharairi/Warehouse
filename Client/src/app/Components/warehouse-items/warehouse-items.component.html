@@ -1,0 +1,38 @@
+<div class="warehouse-items-container">
+  <h2 class="title">Warehouse Items</h2>
+
+  <div class="top-low-buttons">
+    <button class="btn" (click)="showTopItems()">Top 10 High Items</button>
+    <button class="btn" (click)="showLowItems()">Top 10 Low Items</button>
+  </div>
+
+  <div class="pagination-controls">
+    <button class="btn" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>SKU Code</th>
+        <th>Quantity</th>
+        <th>Cost Price</th>
+        <th>MSRP Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of paginatedItems">
+        <td>{{ item.name }}</td>
+        <td>{{ item.skuCode }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.costPrice | currency }}</td>
+        <td>{{ item.msrpPrice | currency }}</td>
+      </tr>
+      <tr *ngIf="paginatedItems.length === 0">
+        <td colspan="5" class="no-items-message">No items available.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

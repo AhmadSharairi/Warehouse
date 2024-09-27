@@ -1,0 +1,70 @@
+.table {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5em 0.7em;
+  border-radius: 0.5rem;
+}
+
+.bg-success {
+  background-color: #28a745 !important; 
+}
+
+.bg-secondary {
+  background-color: #6c757d !important; 
+}
+
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.action-button {
+  margin: 0;
+}
+
+.action-button:last-child {
+  margin-right: 0; 
+}
+
+th.text-center {
+  text-align: center; 
+}
+
+
+.alert {
+  padding: 20px;
+  background-color: #f8d7da;
+  color: #721c24; 
+}
+
+.alert-heading {
+  margin-bottom: 0.5rem; 
+}
+
+.action-cell {
+  display: flex;
+  justify-content: center; 
+  gap: 10px; 
+}
+
+
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.8rem;
+  }
+}
