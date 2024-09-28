@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yTWotoQc2S9PdvY4lWV6aoK57vvgphJHzWguSZtIxu9LdGjTEIFdzwQF3AFB5fMlToUIs4Sfu2tVbtnSd1YO5A==",
+  "dgSpecHash": "70Slp/ASN8RiYssnlbRDtDyxGVtTGQYZaOWETq/hMeZtLNEtX++o7nAJ2I4/JhCW50MULwvl2i0QZr6WgBNrww==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\VsCode\\Warehouse\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -32,8 +32,6 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\serilog\\2.12.0\\serilog.2.12.0.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\serilog.extensions.logging\\1.4.0\\serilog.extensions.logging.1.4.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
