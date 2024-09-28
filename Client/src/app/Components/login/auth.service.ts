@@ -57,11 +57,13 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  // Decode Token role and username from before that must be this command -- > npm i @auth0/angular-jwt
+  // Decode Token role and email from before that must be this command -- > npm i @auth0/angular-jwt
   decodeToken() {
     const jwtHelper = new JwtHelperService();
     const token = this.getToken()!;
+    console.log("here is the data user");
     console.log(jwtHelper.decodeToken(token));
+
     return jwtHelper.decodeToken(token); // return payload data as obj from token
   }
 
@@ -77,8 +79,7 @@ export class AuthService {
 
 
   resetPassword(resetPassword: ResetPassword)
-  {  console.log("Here is resetPasssword");
-
+  {
     console.log(resetPassword);
 
     return this.http.post<any>(`${this.baseUrl}reset-password`, resetPassword);

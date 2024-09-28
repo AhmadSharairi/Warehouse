@@ -9,32 +9,30 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css'] 
+  styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
+
   updateUserForm!: FormGroup;
-  userId!: number; 
-  roles: string[] = ['Admin', 'Management', 'Auditor'];
+  userId!: number;
+  roles: string[] = ["Admin", "Management", "Auditor"];
 
   constructor(
-    private fb: FormBuilder, 
-    private userService: UserService, 
+    private fb: FormBuilder,
+    private userService: UserService,
     private route: ActivatedRoute ,
-    private router: Router 
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.userId = +this.route.snapshot.paramMap.get('id')!; 
-
-
+    this.userId = +this.route.snapshot.paramMap.get('id')!;
     this.updateUserForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       fullName: ['', Validators.required],
-      roleId: ['', Validators.required],
+      roleName: ['', Validators.required],
       isActive: [false] ,
-      
-    });
 
+    });
 
     this.loadUserDetails();
   }
@@ -42,24 +40,31 @@ export class UpdateUserComponent implements OnInit {
   loadUserDetails() {
     this.userService.getUserById(this.userId).subscribe(user => {
       this.updateUserForm.patchValue({
-        ...user,
-        id: this.userId 
+        email: user.email,
+        fullName: user.fullName,
+        roleName: user.roleName,
+        isActive: user.isActive
       });
     });
   }
-  
+
+
 
 
   onSubmit() {
     if (this.updateUserForm.valid) {
-      const userData = { ...this.updateUserForm.value, id: this.userId }; 
+      const userData = { ...this.updateUserForm.value, id: this.userId };
       this.userService.updateUser(this.userId, userData).subscribe(() => {
         alert('User updated successfully');
         this.router.navigate(['/users']);
-      
+        console.log("Updated VAlue is ");
+
+        console.log(this.updateUserForm.value);
+
+
       });
     }
   }
-  
-  
+
+
 }

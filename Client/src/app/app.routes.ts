@@ -7,7 +7,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { WarehouseItemsComponent } from './Components/warehouse-items/warehouse-items.component';
 import { ChangePasswordComponent } from './Components/change-password/change-password.component';
 import { UpdateUserComponent } from './Components/update-user/update-user.component';
-
+import { AddWarehouseComponent } from './Components/add-warehouse/add-warehouse.component';
 
 
 
@@ -16,6 +16,7 @@ export const routes: Routes = [
   {  path: 'home', component: HomeComponent, canActivate: [authGuard]},
   {  path: 'warehouse', component: WarehouseComponent, canActivate: [authGuard]},
   {  path: 'warehouses/:id', component: WarehouseItemsComponent, canActivate: [authGuard]},
+  {  path: 'add-warehouse', component: AddWarehouseComponent, canActivate: [authGuard]},
   {  path: 'user/:id/change-password', component: ChangePasswordComponent, canActivate: [authGuard]},
   {  path: 'user/:id/update-user', component: UpdateUserComponent, canActivate: [authGuard]},
   {  path: 'users', component: UserComponent, canActivate: [authGuard]},

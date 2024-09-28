@@ -25,12 +25,17 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllUsers();
     this.getRoleByToken();
+    this.getAllUsers();
+
   }
 
   getRoleByToken() {
     this.roleName = this.loginService.getRoleFromToken();
+    console.log('this is the form name :');
+
+    console.log(this.roleName);
+
     return this.roleName;
   }
 
@@ -82,7 +87,7 @@ export class UserComponent implements OnInit {
       (error) => {
         console.error('Error updating user status:', error);
         this.toastr.error('Error updating user status. Please try again.');
-        user.isActive = !user.isActive; 
+        user.isActive = !user.isActive;
       }
     );
   }

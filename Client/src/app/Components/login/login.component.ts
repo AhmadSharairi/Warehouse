@@ -54,10 +54,10 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.isLoading = true; 
+      this.isLoading = true;
       this.auth.loginPost(this.loginForm.value).subscribe({
         next: (res: { accessToken: any; refreshToken: any; message: any }) => {
-          this.isLoading = false; 
+          this.isLoading = false;
           this.loginForm.reset();
           this.auth.storeToken(res.accessToken);
           this.auth.storeRefreshToken(res.refreshToken);
@@ -75,11 +75,4 @@ export class LoginComponent implements OnInit {
   }
 
 
-  checkValidEmail(event: string) {
-    const value = event;
-    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
-    this.isValidEmail = pattern.test(value);
-
-    return this.isValidEmail;
-  }
 }

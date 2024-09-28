@@ -14,13 +14,15 @@ namespace API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IRoleRepository _roleRepo;
         private readonly IMapper _mapper;
 
 
 
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService, IMapper mapper , IRoleRepository roleRepo)
         {
             _userService = userService;
+            _roleRepo = roleRepo;
             _mapper = mapper;
 
         }
@@ -54,20 +56,29 @@ namespace API.Controllers
       //  [Authorize(Roles = "Admin, Management")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto userDto)
         {
+                  
+
+            
             if (id != userDto.Id)
             {
                 return BadRequest("User ID mismatch.");
             }
 
-            var userEntity = await _userService.GetUserByIdAsync(id);
-            if (userEntity == null)
+
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user == null)
             {
                 return NotFound("User not found.");
             }
 
-    
-            _mapper.Map(userDto, userEntity);
-            await _userService.UpdateUserAsync(userEntity);
+     
+           int roleId = await _roleRepo.GetRoleIdByNameAsync(userDto.RoleName);
+            
+            _mapper.Map(userDto, user);
+            user.RoleId = roleId; 
+
+            await _userService.UpdateUserAsync(user);
+
 
             return NoContent(); 
         }

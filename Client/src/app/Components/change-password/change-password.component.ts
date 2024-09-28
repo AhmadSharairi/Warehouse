@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user/user.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,7 +20,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './change-password.component.css',
 })
 export class ChangePasswordComponent implements OnInit {
-  userId: number | undefined;
+  userId!: number;
   passwordVisible: boolean = false;
 
   changePasswordForm: FormGroup;
@@ -31,10 +31,12 @@ export class ChangePasswordComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.changePasswordForm = this.fb.group(
       {
+        email: ['', [Validators.required, Validators.email]],
         currentPassword: ['', [Validators.required]],
         newPassword: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]],
@@ -44,13 +46,23 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    this.userId = idParam ? +idParam : undefined;
+    this.userId = +this.route.snapshot.paramMap.get('id')!;
+    this.loadUserDetails();
   }
 
   getUser() {
     const id = this.userId ?? 0;
+
     this.userData = this.userService.getUserById(id);
+  }
+
+  loadUserDetails() {
+    this.userService.getUserById(this.userId).subscribe((user) => {
+      this.changePasswordForm.patchValue({
+        id: this.userId,
+        ...user,
+      });
+    });
   }
 
   togglePasswordVisibility() {
@@ -74,6 +86,8 @@ export class ChangePasswordComponent implements OnInit {
         next: (response: any) => {
           console.log('Password changed successfully!', response);
           this.toastr.success('Password changed successfully!', 'Success');
+          this.changePasswordForm.reset();
+          this.router.navigate(['/users']);
         },
         error: (err: any) => {
           console.error('Error changing password', err);

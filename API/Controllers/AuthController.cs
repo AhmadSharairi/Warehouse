@@ -159,6 +159,13 @@ namespace API.Controllers
                 return NotFound(new { Message = "User does not exist." });
             }
 
+
+              if (user.Email != resetPasswordDto.Email)
+             {
+                 return NotFound(new { Message = "Email not found." });
+             }
+
+
             // Verify the current password
             if (!PasswordHasher.VerifyPassword(resetPasswordDto.CurrentPassword, user.Password))
             {
